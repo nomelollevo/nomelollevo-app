@@ -43,6 +43,7 @@ GEM
     jquery-rails (0.2.5)
       rails (~> 3.0)
       thor (~> 0.14.4)
+    json (1.4.6)
     linecache (0.43)
     mail (2.2.9)
       activesupport (>= 2.3.6)
@@ -94,6 +95,7 @@ PLATFORMS
 
 DEPENDENCIES
   jquery-rails
+  json
   oauth2
   rails (= 3.0.1)
   rails_config

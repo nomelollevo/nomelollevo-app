@@ -3,7 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.1'
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'oauth2'        # for authentication
-gem "rails_config"  # simple configuration of the app
+gem 'rails_config'  # simple configuration of the app
+gem 'json'
 
 # We ar using jquery as the js framework
 gem 'jquery-rails'
