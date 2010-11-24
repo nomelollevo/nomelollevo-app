@@ -1,0 +1,7 @@
+authentication:
+  facebook:
+    site: "https://graph.facebook.com/oauth/authorize"
+    app_id: 162983240406274
+    app_secret: d6124a89c7b3c7de36b9914b664359dd
+    callback_url: "http://nomelollevo.com/authentication/facebook/callback/"
+    scope: "email"

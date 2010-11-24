@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nomelollevo</title>
+  <%= stylesheet_link_tag "reset" %>
+  <%= stylesheet_link_tag "960" %>
+  <%= stylesheet_link_tag "nomelollevo" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <div id="header">
+    <span id="header-logo-text">nomelollevo</span>
+  </div>
+
+  <%= yield %>
+
+</body>
+</html>

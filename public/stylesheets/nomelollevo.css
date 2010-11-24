@@ -1,0 +1,168 @@
+body {
+   background-color: #f4f4f4;
+   font-family: arial
+}
+
+#header {
+   width: 100%;
+   background-image: url("/images/header_bg.png");
+   height: 68px;
+   position: relative
+}
+
+#header-logo-text {
+   color: white;
+   font-size: 25px;
+   position: absolute;
+   margin-left: 20px;
+   margin-top: 27px;
+   text-shadow: #e59408 0px -1px 1px
+}
+
+.overlay {
+   display: none;
+   overflow: visible;
+   position: absolute;
+   left: 0px;
+   top: 0px;
+   width:100%;
+   height:100%;
+   background-color: #968e7e;
+   text-align:center;
+   background: none repeat scroll 0 0 #555555;
+   opacity: 0.5;
+   z-index: 1001
+}
+
+.overlay-dialog {
+   color: #968e7e;
+   display: none;
+   overflow: visible;
+   position: absolute;
+   top: 100px;
+   width:500px;
+   height: 300px;
+   background-color: #fff;
+   padding:15px;
+   text-align:center;
+   z-index: 2001
+}
+
+/*************/
+/* Home page */
+/*************/
+
+#map-container {
+   height: 450px;
+   background-color: white;
+   position: relative
+}
+
+
+#description {
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   position: absolute;
+   background-color: #968e7e;
+   margin-top: 50px;
+   margin-left: 200px;
+   margin-right: 200px;
+   margin-bottom: 50px;
+   height: 300px;
+   color: white;
+   padding: 10px 20px
+}
+
+
+#description-title {
+   font-size: 25px;
+   text-align: center;
+   margin-bottom: 40px;
+   margin-top: 5px;
+   font-weight: bold
+}
+
+.description-text {
+   font-size: 12px
+}
+
+a.button {
+   display: block;
+   float: left;
+   font: normal 12px arial, sans-serif;
+   height: 37px;
+   margin-right: 6px;
+   padding-right: 18px; /* sliding doors padding */
+   text-decoration: none
+}
+
+a.button span {
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   background: transparent url('/images/home/new_sale_btn_bg.png');
+   display: block;
+   line-height: 14px;
+   padding: 10px 18px 10px 18px
+}
+
+a.cancel-link {
+   color: #f69b00;
+   font-weight: bold
+}
+
+#new-sale-home-button {
+   position: absolute;
+   bottom: 30px;
+   font-size: 20px;
+   color: white;
+   text-shadow: #e59408 0px -1px 1px;
+   margin-left: 145px
+}
+
+#sub-description-body {
+   margin-top: 40px
+}
+
+#auth-button-row {
+   position: relative;
+   width: 100%;
+   margin-top: 100px;
+   margin-left: 20px
+}
+
+#auth-cancel {
+   position: relative;
+   widht: 100%;
+   margin-top: 250px
+}
+
+
+/********************/
+/* Authentication  */
+/*******************/
+
+.overlay-shown {
+   overflow: visible;
+   position: absolute;
+   left: 0px;
+   top: 68px;
+   width:100%;
+   height:100%;
+   background-color: #968e7e;
+   text-align:center;
+   background: none repeat scroll 0 0 #555555;
+   z-index: 1001
+}
+
+.overlay-dialog-shown {
+   color: #968e7e;
+   overflow: visible;
+   position: relative;
+   margin: auto;
+   top: 100px;
+   width:500px;
+   height: 300px;
+   background-color: #fff;
+   padding:15px;
+   text-align:center
+}

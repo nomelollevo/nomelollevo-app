@@ -1,0 +1,37 @@
+<script type="text/javascript">
+  jQuery(function($) {
+    // document ready
+    NML.Home.Index.onload();
+  });
+</script>
+
+<div id="map-container" class="container_12">
+
+  <div id="description">
+
+    <div id="description-title">
+      Cada mudanza es una oportunidad
+    </div>
+
+    <div id="description-body" class="description-text">
+      nomelollevo hace f&aacute;cil que te deshagas de las cosas que te sobran o
+      que encuentres chollos y oportunidades cerca de tu casa.
+    </div>
+    <div id="sub-description-body" class="description-text">
+      Todo con un par de clics.
+    </div>
+
+    <%= link_to(url_for(:controller => "authentication", :action => "index"),
+                :id => "new-sale-home-button",
+                :class => "button") do %>
+      <span>Crea una nueva venta</span>
+    <% end %>
+  </div>
+
+</div>
+
+<div id="login-overlay" class="overlay">
+</div>
+<div id="login-selection-box" class="overlay-dialog">
+  <%= render :partial => "login_buttons" %>
+</div>

@@ -1,0 +1,11 @@
+<div>Selecciona una forma de identificaci&oacute;n:</div>
+<div id="auth-button-row">
+  <a class="button" href="/authentication/facebook">
+    <img src="/images/home/fb_login_btn.png"/>
+  </a>
+</div>
+<div id="auth-cancel">
+  <%= link_to "cancelar",
+              url_for(:action => "index", :controller => "home"),
+              :class => "cancel-link" %>
+</div>
