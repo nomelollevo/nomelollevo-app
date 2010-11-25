@@ -38,6 +38,80 @@ NML = {
     }
 }
 
+/* Localization Functions */
+NML.Localization = {
+
+    initialLocation: null,
+
+    defaultPosition: null,
+
+    browserSupportFlag: new Boolean(),
+
+    initialize: function() {
+        NML.Localization.defaultPosition = new google.maps.LatLng(40.69847032728747, -73.9514422416687);
+
+        var myOptions = {
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map-container"), myOptions);
+
+        // Try W3C Geolocation (Preferred)
+        if(navigator.geolocation) {
+            NML.Localization.browserSupportFlag = true;
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    NML.Localization.initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                    map.setCenter(NML.Localization.initialLocation);
+	            marker = new google.maps.Marker({
+		        position: NML.Localization.initialLocation,
+		        map: map,
+		        title:"Initial location"
+	            });
+	            map.addOverlay(marker)
+                },
+
+                function() {
+                    NML.Localization.handleNoGeolocation(NML.Localization.browserSupportFlag);
+                });
+
+        // Try Google Gears Geolocation
+        } else if (google.gears) {
+            NML.Localization.browserSupportFlag = true;
+            var geo = google.gears.factory.create('beta.geolocation');
+            geo.getCurrentPosition(
+                function(position) {
+                    NML.Localization.initialLocation = new google.maps.LatLng(position.latitude,position.longitude);
+                    map.setCenter(NML.Localization.initialLocation);
+	            marker = new google.maps.Marker({
+		        position: NML.Localization.initialLocation,
+		        map: map,
+		        title:"Initial location"
+	            });
+	            map.addOverlay(marker)
+                },
+
+                function() {
+                    NML.Localization.handleNoGeoLocation(NML.Localization.browserSupportFlag);
+                });
+
+        // Browser doesn't support Geolocation
+        } else {
+            NML.Localization.browserSupportFlag = false;
+            NML.Localization.handleNoGeolocation(NML.Localization.browserSupportFlag);
+        }
+    },
+
+    handleNoGeolocation: function(errorFlag) {
+        if (errorFlag == true) {
+            NML.Localization.initialLocation = NML.Localization.defaultPosition;
+        } else {
+            NML.Localization.initialLocation = NML.Localization.defaultPosition;
+        }
+        map.setCenter(NML.Localization.initialLocation);
+    }
+}
 
 /* Home Controller */
 NML.Home = {
@@ -47,6 +121,10 @@ NML.Home = {
 
         // executed when the page has been loaded
         onload: function() {
+            // Localization support
+            NML.Localization.initialize();
+
+            // Identification and login
             jQuery("#new-sale-home-button").click(function() {
                 NML.overlay("login-overlay", "login-selection-box");
                 return false;
