@@ -52,24 +52,28 @@ body {
 /* Home page */
 /*************/
 
+#container{
+   position: relative;
+   margin: 0 auto;	
+}
+
 #map-container {
    height: 450px;
    background-color: white;
-   position: relative
+   position: relative;
+   width:100%;
 }
 
 
 #description {
    -moz-border-radius: 3px;
-   border-radius: 3px;
-   position: absolute;
+   border-radius: 3px;   
    background-color: #968e7e;
-   margin-top: 50px;
-   margin-left: 200px;
-   margin-right: 200px;
-   margin-bottom: 50px;
-   height: 300px;
-   color: white;
+   position: relative;
+   margin: -375px auto;
+   width:50%;
+   height:300px;
+   color: white;   
    padding: 10px 20px
 }
 
