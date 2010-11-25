@@ -20,6 +20,12 @@ class AuthenticationController < ApplicationController
   # Facebook will redirect the authenticated user to this
   # action
   def facebook_callback
-    render :text => parse_facebook_user_data
+    user = parse_facebook_user_data
+    u = User.new(:email => user["email"], :nick => user["first_name"])
+    u.save!
+
+    session[:user_id] = u.id
+
+    render :text => "ok"
   end
 end

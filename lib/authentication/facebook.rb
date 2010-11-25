@@ -25,9 +25,7 @@ module Authentication
     def parse_facebook_user_data
       access_token = facebook_client.web_server.access_token(params[:code],
                                                              :redirect_uri => Settings.authentication.facebook.callback_url)
-      user = JSON.parse(access_token.get('/me'))
-
-      user.inspect
+      JSON.parse(access_token.get('/me'))
     end
 
   end

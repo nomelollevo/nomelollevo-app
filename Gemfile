@@ -19,5 +19,9 @@ gem 'jquery-rails'
 group :development, :test do
   gem "wirble"
   gem "ruby-debug"
-#  gem "ruby-debug19"
+  gem "rspec-rails"
+  gem "autotest"
+  gem "autotest-rails-pure"
+  gem "autotest-fsevent"
+  gem "autotest-growl"
 end
