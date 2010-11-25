@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe AuthenticationController do
+
   it "should create a new user model object if the user is not registered" do
     User.destroy_all
 
@@ -41,4 +42,5 @@ describe AuthenticationController do
 
     controller.session[:user_id].should_not be_nil
   end
+
 end
