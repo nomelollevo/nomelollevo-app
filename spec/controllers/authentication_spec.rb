@@ -17,10 +17,11 @@ describe AuthenticationController do
 
     get 'facebook_callback', {:code => "the_code"}
 
-    response.should be_success
+    response.should redirect_to(:controller => "sales_management", :action => "index", :user_id => User.first.id)
 
     User.first.nick.should be_eql("Miguel")
     User.first.email.should be_eql("migelromanones@gmail.com")
+    User.first.token.should_not be_nil
   end
 
   it "should store the user in session after potentially saving it" do
@@ -38,9 +39,9 @@ describe AuthenticationController do
 
     get 'facebook_callback', {:code => "the_code"}
 
-    response.should be_success
+    response.should redirect_to(:controller => "sales_management", :action => "index", :user_id => User.first.id)
 
-    controller.session[:user_id].should_not be_nil
+    controller.session[:user_token].should_not be_nil
   end
 
 end

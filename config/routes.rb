@@ -55,6 +55,9 @@ Nomelollevo::Application.routes.draw do
   match "/authentication/facebook/callback/" => "authentication#facebook_callback"
   match "/authentication/" => "authentication#index"
 
+  # SalesManagement
+  match "/ventas/:user_id" => "sales_management#index"
+
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

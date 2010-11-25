@@ -2,12 +2,12 @@ class Sale < ActiveRecord::Base
   validates_presence_of :is_unlimited
   validates_presence_of :zip_code
 
-  validate :not_blank_times_if_not_limited
+  validate :not_blank_times_if_limited
   validate :end_time_in_the_future
 
   # validations
 
-  def not_blank_times_if_not_limited
+  def not_blank_times_if_limited
     if !is_unlimited && end_time.nil?
       errors.add(:end_time, "debes indicar la fecha de fin para ventas limitadas")
     end

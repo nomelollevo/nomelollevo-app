@@ -1,4 +1,5 @@
 require "#{Rails.root}/lib/authentication/facebook"
+require "digest/md5"
 
 class AuthenticationController < ApplicationController
 
@@ -21,11 +22,23 @@ class AuthenticationController < ApplicationController
   # action
   def facebook_callback
     user = parse_facebook_user_data
-    u = User.new(:email => user["email"], :nick => user["first_name"])
+    u = User.new(:email => user["email"],
+                 :nick  => user["first_name"],
+                 :token => sign_user_token(user["email"],"facebook"))
     u.save!
 
-    session[:user_id] = u.id
+    set_current_user(u)
 
-    render :text => "ok"
+    redirect_to :controller => "sales_management",
+                :action     => "index",
+                :user_id    => u.id
   end
+
+  private
+
+  # Generates a token for the user
+  def sign_user_token(email, salt)
+    Digest::MD5.hexdigest("#{email}:#{salt}")
+  end
+
 end
