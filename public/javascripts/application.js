@@ -36,7 +36,7 @@ NML = {
         jQuery(overlayId).hide();
         jQuery(overlayWidgetId).hide();
     }
-}
+};
 
 
 /* Home Controller */
@@ -58,4 +58,17 @@ NML.Home = {
             });
         }
     }
-}
+};
+
+/* SalesManagement Controller */
+NML.SalesManagement = {
+
+    // Index action
+    Index: {
+
+        // executed when the page has been loaded
+        onload: function() {
+
+        }
+    }
+};

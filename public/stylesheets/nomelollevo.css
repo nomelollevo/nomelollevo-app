@@ -3,6 +3,10 @@ body {
    font-family: arial
 }
 
+a {
+  color: #e59408
+}
+
 #header {
    width: 100%;
    background-image: url("/images/header_bg.png");
@@ -90,6 +94,7 @@ a.button {
    display: block;
    float: left;
    font: normal 12px arial, sans-serif;
+   color: white;
    height: 37px;
    margin-right: 6px;
    padding-right: 18px; /* sliding doors padding */
@@ -165,4 +170,58 @@ a.cancel-link {
    background-color: #fff;
    padding:15px;
    text-align:center
+}
+
+/**********************/
+/*  Sales Management  */
+/*********************/
+
+#management-menu {
+   border-top: 4px solid #70695e;
+   width: 100%;
+   height: 50px;
+   position: relative
+}
+
+#management-menu-button-row {
+   position: absolute;
+   right: 30px;
+   top: 11px
+}
+
+.management-menu-button {
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   margin: 5px;
+   padding-top: 12px;
+   padding-bottom: 10px;
+   background-color: #70695e;
+   color: white
+}
+
+#sales-index-button {
+   padding-left: 40px;
+   padding-right: 40px
+}
+
+#offers-index-button {
+   padding-left: 20px;
+   padding-right: 20px
+}
+
+#actions-row {
+   width: 100%;
+   font-size: 20px;
+   margin-top: 20px;
+   margin-left: 40px
+}
+
+#sales-warning {
+   width: 500px;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 150px;
+   padding: 20px;
+   background-color: white;
+   color: #70695e
 }

@@ -12,6 +12,12 @@ module Factories
     obj
   end
 
+  def with_authenticated_user
+    user = factory_create :valid_user
+    controller.session[:user_token] = user.token
+    yield user
+  end
+
   # Users
   def valid_user
     User.new(:nick  => 'john',
