@@ -4,13 +4,14 @@ class SalesManagementController < ApplicationController
   # for a certain user
   def index
     with_valid_user do |user|
-
+      @sales = user.sales
     end
   end
 
   private
 
   # Checks that the current user is authenticated
+
   def with_valid_user
     if(current_user && current_user.id == params[:user_id])
       @user = current_user

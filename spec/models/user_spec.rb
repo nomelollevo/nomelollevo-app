@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe User do
+
+  include Factories
+
   it "should have a non empty email and nick" do
     u = User.new
     u.save
@@ -34,4 +37,17 @@ describe User do
     u.should be_valid
   end
 
+  it "should be possible to associate any number of sales" do
+    u = factory_create :valid_user
+    s1 = factory_build :valid_unlimited_sale
+    s2 = factory_build :valid_unlimited_sale
+
+    u.sales << s1
+    u.sales << s2
+    u.save!
+
+    u.reload
+
+    u.sales.should have(2).sales
+  end
 end

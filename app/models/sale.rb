@@ -1,11 +1,20 @@
 class Sale < ActiveRecord::Base
+
+  # associations
+
+  belongs_to :user
+
+  # validations
+
   validates_presence_of :is_unlimited
   validates_presence_of :zip_code
+  validates_presence_of :longitude
+  validates_presence_of :latitude
 
   validate :not_blank_times_if_limited
   validate :end_time_in_the_future
 
-  # validations
+  # validation functions
 
   def not_blank_times_if_limited
     if !is_unlimited && end_time.nil?

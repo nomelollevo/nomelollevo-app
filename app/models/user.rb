@@ -1,4 +1,10 @@
 class User < ActiveRecord::Base
+  # associations
+
+  has_many :sales
+
+  # validations
+
   validates_presence_of :email
   validates_presence_of :nick
   validates_presence_of :token
