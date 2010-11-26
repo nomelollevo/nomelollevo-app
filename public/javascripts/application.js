@@ -36,7 +36,7 @@ NML = {
         jQuery(overlayId).hide();
         jQuery(overlayWidgetId).hide();
     }
-}
+};
 
 /* Localization Functions */
 NML.Localization = {
@@ -136,4 +136,17 @@ NML.Home = {
             });
         }
     }
-}
+};
+
+/* SalesManagement Controller */
+NML.SalesManagement = {
+
+    // Index action
+    Index: {
+
+        // executed when the page has been loaded
+        onload: function() {
+
+        }
+    }
+};

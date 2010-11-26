@@ -1,0 +1,17 @@
+<div id="management-menu">
+  <div id="management-menu-button-row">
+
+    <%= link_to(url_for(:controller => "sales_management", :action => "index"),
+                :id => "sales-index-button",
+                :class => "management-menu-button management-menu-button-selected") do %>
+      <span>Ventas</span>
+    <% end %>
+
+    <%= link_to("#",
+                :id => "offers-index-button",
+                :class => "management-menu-button management-menu-button-unselected") do %>
+      <span>Compradores</span>
+    <% end %>
+
+  </div>
+</div>

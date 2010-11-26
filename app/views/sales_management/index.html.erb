@@ -1,0 +1,34 @@
+<script type="text/javascript">
+  jQuery(function($) {
+    // document ready
+    NML.SalesManagement.Index.onload();
+  });
+</script>
+
+<!-- Menu -->
+<%= render :partial => "sales_management/menu" %>
+
+<!-- Actions -->
+<div id="actions-row">
+
+    <%= link_to(url_for(:controller => "sales_management", :action => "new"),
+                :id => "new-sale-button",
+                :class => "button") do %>
+      <span>+ Nueva venta</span>
+    <% end %>
+
+</div>
+
+
+<% if @sales.empty? %>
+  <div id="sales-warning">
+    Todav&iacute;a no has creado ninguna venta, haz clic en el bot&oacute;n
+    <%= link_to "nueva venta", url_for(:controller => "sales_management",
+    :action => "new") %> para crear una.
+  </div>
+<% end %>
+
+<!-- Sales listing -->
+<div id="sales-listing">
+
+</div>

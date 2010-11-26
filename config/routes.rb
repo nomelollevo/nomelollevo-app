@@ -51,9 +51,13 @@ Nomelollevo::Application.routes.draw do
   root :to => "home#index"
 
   # Authentication
-  match "/authentication/facebook" => "authentication#facebook_request"
+  match "/authentication/facebook"           => "authentication#facebook_request"
   match "/authentication/facebook/callback/" => "authentication#facebook_callback"
-  match "/authentication/" => "authentication#index"
+  match "/authentication/"                   => "authentication#index"
+
+  # SalesManagement
+  match "/ventas/:user_id"                   => "sales_management#index"
+  match "/ventas/:user_id/new"               => "sales_management#new"
 
   # See how all your routes lay out with "rake routes"
 

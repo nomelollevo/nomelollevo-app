@@ -1,4 +1,5 @@
 require "#{Rails.root}/lib/authentication/facebook"
+require "digest/md5"
 
 class AuthenticationController < ApplicationController
 
@@ -20,6 +21,24 @@ class AuthenticationController < ApplicationController
   # Facebook will redirect the authenticated user to this
   # action
   def facebook_callback
-    render :text => parse_facebook_user_data
+    user = parse_facebook_user_data
+    u = User.new(:email => user["email"],
+                 :nick  => user["first_name"],
+                 :token => sign_user_token(user["email"],"facebook"))
+    u.save!
+
+    set_current_user(u)
+
+    redirect_to :controller => "sales_management",
+                :action     => "index",
+                :user_id    => u.id
   end
+
+  private
+
+  # Generates a token for the user
+  def sign_user_token(email, salt)
+    Digest::MD5.hexdigest("#{email}:#{salt}")
+  end
+
 end
