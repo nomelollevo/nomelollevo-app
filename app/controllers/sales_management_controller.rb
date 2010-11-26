@@ -19,7 +19,7 @@ class SalesManagementController < ApplicationController
   def with_valid_user
     logger.error "Current user: #{current_user} -> params : #{params[:user_id]}"
 
-    if(current_user && current_user.id == params[:user_id])
+    if(current_user && current_user.id.to_s == params[:user_id].to_s)
       @user = current_user
     else
       flash[:error] = "Debes estar autenticado para acceder a este &aacute;rea"
