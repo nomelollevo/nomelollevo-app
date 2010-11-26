@@ -17,6 +17,8 @@ class SalesManagementController < ApplicationController
   # Checks that the current user is authenticated
 
   def with_valid_user
+    logger.error "Current user: #{current_user} -> params : #{params[:user_id]}"
+
     if(current_user && current_user.id == params[:user_id])
       @user = current_user
     else

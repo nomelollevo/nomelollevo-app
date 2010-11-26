@@ -12,4 +12,10 @@ class User < ActiveRecord::Base
   validates_format_of :email,
                       :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i,
                       :message => 'el email debe ser v&aacute;lido'
+
+  # logic
+
+  def self.find_by_token(token)
+    User.find(:first, :conditions => {:token => token})
+  end
 end

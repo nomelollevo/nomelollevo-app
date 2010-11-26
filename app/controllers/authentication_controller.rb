@@ -21,17 +21,23 @@ class AuthenticationController < ApplicationController
   # Facebook will redirect the authenticated user to this
   # action
   def facebook_callback
-    user = parse_facebook_user_data
-    u = User.new(:email => user["email"],
-                 :nick  => user["first_name"],
-                 :token => sign_user_token(user["email"],"facebook"))
-    u.save!
+    user_data = parse_facebook_user_data
+    token = sign_user_token(user_data["email"],"facebook")
 
-    set_current_user(u)
+    user =  User.find_by_token(token)
+    if user
+      set_current_user(user)
+    else
+      user = User.new(:email => user_data["email"],
+                      :nick  => user_data["first_name"],
+                      :token => token)
+      user.save!
 
+      set_current_user(user)
+    end
     redirect_to :controller => "sales_management",
                 :action     => "index",
-                :user_id    => u.id
+                :user_id    => user.id
   end
 
   private
