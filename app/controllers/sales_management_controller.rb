@@ -8,8 +8,10 @@ class SalesManagementController < ApplicationController
     @sales = @user.sales
   end
 
+  # This action is rendered when a user wishes to create a
+  # new sale
   def new
-
+    @sale = Sale.new
   end
 
   private

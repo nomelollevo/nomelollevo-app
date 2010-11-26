@@ -52,6 +52,7 @@ NML.Localization = {
 
         var myOptions = {
             zoom: 15,
+            mapTypeControl: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
@@ -147,6 +148,83 @@ NML.SalesManagement = {
         // executed when the page has been loaded
         onload: function() {
 
+        }
+    },
+
+    // New action
+    New: {
+        map: null,
+
+        marker: null,
+
+        displayMap: function() {
+            var location = arguments[0];
+
+            if(NML.SalesManagement.New.map==null) {
+                var myOptions = {
+                    zoom: 13,
+                    center: location[0].geometry.location,
+                    mapTypeControl: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                NML.SalesManagement.New.map = new google.maps.Map(document.getElementById("sale-map"), myOptions);
+            } else {
+                NML.SalesManagement.New.marker.setMap(null);
+            }
+
+            NML.SalesManagement.New.map.setCenter(location[0].geometry.location);
+            NML.SalesManagement.New.marker = new google.maps.Marker({ map: NML.SalesManagement.New.map,
+                                                                      position: location[0].geometry.location });
+
+        },
+
+        // executed when the page has been loaded
+        onload: function() {
+            // date pickers
+            jQuery("#sale_start_time").datepicker();
+            jQuery("#sale_end_time").datepicker();
+
+            // hide add items button
+            jQuery("#submit-new-sale").hide();
+            jQuery("#add-items-to-new-sale-button").show();
+            jQuery("#add-items-to-new-sale-button").click(function(){
+                jQuery("#new-sale-form").trigger("submit");
+                return false;
+            });
+
+            // geocoder
+            var geocoder = new google.maps.Geocoder();
+
+            var shouldEncode = function() {
+                var valProvince = jQuery("#sale_province").val();
+                var valZip = jQuery("#sale_zip_code").val();
+
+                if(valZip != "" && valProvince != "") {
+                    var toEncode = valProvince + " " + valZip;
+                    geocoder.geocode( { 'address': toEncode }, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            NML.SalesManagement.New.displayMap(results);
+                        }
+                    });
+                }
+            };
+
+            shouldEncode();
+
+            jQuery("#sale_province").focusout(shouldEncode);
+
+            jQuery("#sale_zip_code").focusout(shouldEncode);
+
+            jQuery("#sale_is_unlimited").click(function() {
+                var isSelected = jQuery("#sale_is_unlimited").attr("checked");
+                if(isSelected) {
+                    jQuery("#sale_start_time").attr('disabled', true)
+                    jQuery("#sale_end_time").attr('disabled', true)
+                } else {
+                    jQuery("#sale_start_time").attr('disabled', false)
+                    jQuery("#sale_end_time").attr('disabled', false)
+                }
+            });
         }
     }
 };
