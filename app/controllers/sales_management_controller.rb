@@ -14,16 +14,27 @@ class SalesManagementController < ApplicationController
     @sale = Sale.new
   end
 
-  private
-
-  # Checks that the current user is authenticated
-
-  def with_valid_user
-    if(current_user && current_user.id.to_s == params[:user_id].to_s)
-      @user = current_user
+  # Creates the sale and check errors
+  def create
+    @sale = Sale.new(params[:sale])
+    @sale.user = @user
+    if @sale.save
+      flash[:notice] = "La venta ha sido creada con &eacute;xito"
+      render :edit
     else
-      flash[:error] = "Debes estar autenticado para acceder a este &aacute;rea"
-      redirect_to :controller => :home, :action => :index
+      flash[:error] = "La venta no ha podido ser creada, repasa la informaci&oacute;n que falta"
+      render :new
+    end
+  end
+
+  # Edits the items in the sale
+  def edit
+    @sale = Sale.find(:first, :conditions => {:id => params[:sale_id]}, :include => :items)
+    if @sale.user != @user
+      flash[:error] = "No tienes permisos para editar esa venta"
+      redirect_to :index
+    else
+      render :edit
     end
   end
 

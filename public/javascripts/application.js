@@ -147,7 +147,22 @@ NML.SalesManagement = {
 
         // executed when the page has been loaded
         onload: function() {
-
+            jQuery(".sale-row-map-container").each(function(index){
+                var longitude = parseFloat(jQuery(this).find(".longitude-holder").text());
+                var latitude  = parseFloat(jQuery(this).find(".latitude-holder").text());
+                var mapContainer = jQuery(this).find(".map-holder");
+                var latlng = new google.maps.LatLng(latitude, longitude);
+                var myOptions = {
+                    zoom: 14,
+                    center: latlng,
+                    mapTypeControl: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById(mapContainer.attr("id")), myOptions);
+                map.setCenter(latlng);
+                new google.maps.Marker({ map: map,
+                                         position: latlng });
+            });
         }
     },
 
@@ -181,8 +196,19 @@ NML.SalesManagement = {
         // executed when the page has been loaded
         onload: function() {
             // date pickers
-            jQuery("#sale_start_time").datepicker();
-            jQuery("#sale_end_time").datepicker();
+            jQuery("#sale_start_time").datepicker({ dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
+                                                    dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                                                    firstDay: 1,
+                                                    monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']  });
+            jQuery("#sale_start_time" ).datepicker( "option", "dateFormat", 'dd-mm-yyyy' );
+
+
+            jQuery("#sale_end_time").datepicker({ dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
+                                                  dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                                                  firstDay: 1,
+                                                  monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']  });
+            jQuery("#sale_end_time" ).datepicker( "option", "dateFormat", 'dd-mm-yyyy' );
+
 
             // hide add items button
             jQuery("#submit-new-sale").hide();
@@ -198,11 +224,16 @@ NML.SalesManagement = {
             var shouldEncode = function() {
                 var valProvince = jQuery("#sale_province").val();
                 var valZip = jQuery("#sale_zip_code").val();
+                var valAddress = jQuery("#sale_address").val();
 
                 if(valZip != "" && valProvince != "") {
-                    var toEncode = valProvince + " " + valZip;
+                    var toEncode = valProvince + " " + valAddress + " " + valZip;
                     geocoder.geocode( { 'address': toEncode }, function(results, status) {
                         if (status == google.maps.GeocoderStatus.OK) {
+                            var lat = results[0].geometry.location.b;
+                            var lon = results[0].geometry.location.c;
+                            jQuery("#sale_latitude").val(lat);
+                            jQuery("#sale_longitude").val(lon);
                             NML.SalesManagement.New.displayMap(results);
                         }
                     });
@@ -214,6 +245,8 @@ NML.SalesManagement = {
             jQuery("#sale_province").focusout(shouldEncode);
 
             jQuery("#sale_zip_code").focusout(shouldEncode);
+
+            jQuery("#sale_address").focusout(shouldEncode);
 
             jQuery("#sale_is_unlimited").click(function() {
                 var isSelected = jQuery("#sale_is_unlimited").attr("checked");

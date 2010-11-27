@@ -1,0 +1,29 @@
+<script type="text/javascript">
+  jQuery(function($) {
+    // document ready
+    NML.SalesManagement.New.onload();
+  });
+</script>
+
+<!-- Menu -->
+<%= render :partial => "sales_management/menu" %>
+
+<!-- Actions -->
+<div id="actions-row">
+
+    <%= link_to(url_for(:controller => "items_management", :action => "new"),
+                :id => "new-item-button",
+                :class => "button") do %>
+      <span>+ A&ntilde;adir un art&iacute;culo a la venta</span>
+    <% end %>
+
+</div>
+
+<% if @sale.items.empty? %>
+  <div id="sales-warning">
+    Todav&iacute;a no has a&ntilde;adido ningun art&iacute;culo a la venta, haz clic en el bot&oacute;n
+    <%= link_to "Anadir un artículo a la venta", url_for(:controller => "items_management",:action => "new") %> para a&ntilde;adir uno.
+  </div>
+<% else %>
+
+<% end %>

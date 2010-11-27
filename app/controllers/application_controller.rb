@@ -14,6 +14,18 @@ class ApplicationController < ActionController::Base
     session[:user_token] = user.token
   end
 
+  # Checks that the current user is authenticated
+
+  def with_valid_user
+    if(current_user && current_user.id.to_s == params[:user_id].to_s)
+      @user = current_user
+    else
+      flash[:error] = "Debes estar autenticado para acceder a este &aacute;rea"
+      redirect_to :controller => :home, :action => :index
+    end
+  end
+
+
   # only for development
   def with_test_user
     raise Exception.new("You cannot use test users in production!") if Rails.env == "production"

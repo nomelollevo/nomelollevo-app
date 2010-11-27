@@ -29,6 +29,8 @@
 <% end %>
 
 <!-- Sales listing -->
-<div id="sales-listing">
-
+<div id="sales-listing" class="container_12">
+  <% @sales.each do |sale| %>
+   <%= render :partial => "sale_row", :locals => {:sale => sale} %>
+  <% end %>
 </div>

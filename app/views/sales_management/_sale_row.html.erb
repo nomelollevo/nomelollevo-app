@@ -1,0 +1,58 @@
+<div class="sale-row">
+
+  <!-- Sale location -->
+  <div class="sale-row-location sale-row-part">
+    <div class="sale-row-province">
+      <%= "#{sale.province}, #{sale.zip_code}" %>
+    </div>
+    <% unless sale.province.nil? %>
+    <div class="sale-row-address">
+      <%= sale.address %>
+    </div>
+    <% end %>
+  </div>
+  <div id=<%= "'sale-row-map-container-#{sale.id}'" %>
+       class="sale-row-map-container" %>
+    <div class="longitude-holder">
+      <%= sale.longitude %>
+    </div>
+    <div class="latitude-holder">
+      <%= sale.latitude %>
+    </div>
+    <div class="map-holder" id=<%= "'map-holder-#{sale.id}'"%>>
+      <!-- The map will be displayed here -->
+    </div>
+  </div>
+
+  <!-- Sale date -->
+  <div class="sale-row-time sale-row-part">
+    <% if sale.is_unlimited %>
+    <div id="sale-row-date">
+      <label>Fecha finalización</label>
+      <%= sale.end_date %>
+    </div>
+    <% else %>
+    <label>La venta no tiene fecha límite</label>
+    <% end %>
+  </div>
+
+  <!-- Sale items and price -->
+  <div class="sale-row-info sale-row-part">
+    <div class="sale-row-num-items">
+      <%= sale.items.count %> artículos
+    </div>
+    <div class="sale-row-total-price">
+      <%= sale.total_price %> &#8364;
+    </div>
+  </div>
+
+  <!-- Sale items actions -->
+  <div class="sale-row-actions">
+    <%= link_to(url_for(:action => "edit",
+    :user_id => @user.id,
+    :sale_id => sale.id),
+    :class => "button") do %>
+    <span> Editar </span>
+    <% end %>
+  </div>
+</div>

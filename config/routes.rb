@@ -59,6 +59,10 @@ Nomelollevo::Application.routes.draw do
   match "/ventas/:user_id"                   => "sales_management#index"
   match "/ventas/:user_id/new"               => "sales_management#new"
   match "/ventas/:user_id/create"            => "sales_management#create"
+  match "/ventas/:user_id/edit/:sale_id"     => "sales_management#edit"
+
+  # ItemsManagement
+  match "/ventas/:user_id/articulos/:sale_id/new" => "items_management#new"
 
   # See how all your routes lay out with "rake routes"
 

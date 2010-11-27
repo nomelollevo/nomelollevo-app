@@ -30,6 +30,30 @@ a {
    padding: 10px
 }
 
+.field_with_errors input {
+   border-color: red;
+   border-style: solid;
+   border-width: 2px
+}
+
+.errors-form-for {
+   background: none repeat scroll 0 0 red;
+   color: white;
+   margin: 10px;
+   margin-bottom: 40px;
+   padding: 20px
+}
+
+.errors-form-for-msg {
+   margin-bottom: 20px
+}
+
+.errors-form-for li {
+   padding: 5px;
+   list-style: square;
+   margin-left: 20px
+}
+
 .overlay {
    display: none;
    overflow: visible;
@@ -224,7 +248,8 @@ a.cancel-link {
    width: 100%;
    font-size: 20px;
    margin-top: 20px;
-   margin-left: 40px
+   margin-left: 40px;
+   margin-bottom: 120px
 }
 
 #sales-warning {
@@ -235,6 +260,59 @@ a.cancel-link {
    padding: 20px;
    background-color: white;
    color: #70695e
+}
+
+.latitude-holder {
+   display: none
+}
+
+.longitude-holder {
+   display:none
+}
+
+.map-holder {
+   position: absolute;
+   top: 40px;
+   right: 40px;
+   width: 300px;
+   height: 250px;
+   background-color: gray
+}
+
+.sale-row {
+   position: relative;
+   background-color: white;
+   height: 300px;
+   margin: 20px;
+   margin-left: auto;
+   margin-right: auto;
+   padding: 20px;
+   padding-left: 40px;
+   width: 650px
+}
+
+.sale-row-part {
+   padding: 5px;
+   margin: 10px;
+   width: 300px
+}
+
+.sale-row-actions {
+   position: absolute;
+   bottom: 30px;
+   left: 100px
+}
+
+.sale-row-info {
+   margin-top: 20px
+}
+.sale-row-info div {
+   font-size: 25px;
+   margin: 15px
+}
+
+.sale-row-location {
+   font-weight: bold
 }
 
 /* new sale */
@@ -250,6 +328,8 @@ a.cancel-link {
 
 .sale-container {
    padding: 30px;
+   background-color: #968E7E;
+   color: white;
    border-color: #968E7E;
    border-style: solid;
    border-width: 2px

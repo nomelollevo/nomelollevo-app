@@ -13,7 +13,10 @@
     Nueva venta
   </div>
 
-  <%= form_for :sale, @sale, :url => {:action => 'create'}, :html => {:id => "new-sale-form"}  do |f| %>
+  <%= form_for @sale, :as => :sale, :url => {:action => 'create'}, :html => {:id => "new-sale-form"}  do |f| %>
+
+    <%= errors_for(@sale) %>
+
     <div class="sale-container-title">
       Localización de la venta:
     </div>
@@ -32,6 +35,10 @@
         <%= f.label :address, "Dirección (opcional)" %>
         <%= f.text_field :address %>
       </div>
+
+      <%= f.hidden_field :longitude %>
+      <%= f.hidden_field :latitude %>
+
       <div id="sale-map"></div>
     </div>
 
