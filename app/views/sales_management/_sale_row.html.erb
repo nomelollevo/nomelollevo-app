@@ -26,10 +26,10 @@
 
   <!-- Sale date -->
   <div class="sale-row-time sale-row-part">
-    <% if sale.is_unlimited %>
+    <% unless sale.is_unlimited %>
     <div id="sale-row-date">
       <label>Fecha finalización</label>
-      <%= sale.end_date %>
+      <%= sale.end_time %>
     </div>
     <% else %>
     <label>La venta no tiene fecha límite</label>
