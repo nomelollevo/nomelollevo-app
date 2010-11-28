@@ -100,19 +100,29 @@ a {
    width:100%;
 }
 
-
+#description-container {
+   position:absolute;
+   width:100%;
+   margin: -375px auto;	
+}
 #description {
    -moz-border-radius: 3px;
    border-radius: 3px;
    background-color: #968e7e;
    position: relative;
-   margin: -375px auto;
+   margin: 0px auto;
    width:600px;
    height:300px;
    color: white;
    padding: 10px 20px
 }
 
+#description-close{
+	position: relative;
+	float: left;
+	width:100%;
+	text-align:right;
+}
 
 #description-title {
    font-size: 25px;
@@ -125,7 +135,56 @@ a {
 .description-text {
    font-size: 12px
 }
+#categorical-search {
+   position: relative;
+   float: left;
+   width:94%;
+   /*margin-top: 154px;*/
+   color: white;
+   background-color: #968e7e;
+   padding: 3%;
+}
 
+#categorical-search-title{
+	position: relative;
+	float: left;
+	width:100%;
+	color:#f8b33a;
+	font-weight: bold;
+	font-size:26px;
+}
+
+#categorical-search-form{
+   position: relative;
+   float: left;
+   width:100%;
+   margin-top:2%;
+   margin-bottom:2%;
+}
+
+#categorical-search-form li{
+   	position: relative;
+	float: left;
+	width:33%;
+}
+
+#categorical-search-postalcode{
+	position: relative;
+	float: left;
+	width:94%;
+	padding:3%;
+}
+
+#categorical-serach-submit{
+	position: relative;
+	float: left;
+	width:100%;
+	text-align:right;
+}
+
+.categorical-serach-buton{
+	
+}
 a.button {
    display: block;
    float: left;
@@ -157,7 +216,7 @@ a.cancel-link {
    font-size: 20px;
    color: white;
    text-shadow: #e59408 0px -1px 1px;
-   top: 100px;
+   top: 55px;
    left: 185px
 }
 

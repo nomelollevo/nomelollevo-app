@@ -135,6 +135,18 @@ NML.Home = {
                 NML.hideOverlay("login-overlay", "login-selection-box");
                 return false;
             });
+
+			jQuery("#position_cp").click(function() {
+				jQuery("#categorical-search-postalcode").show();			   
+			});
+			
+			jQuery("#position_actual_position").click(function() {
+				jQuery("#categorical-search-postalcode").hide();			   
+			});
+			
+			jQuery("#description-close").click(function() {
+				jQuery("#description").hide();			   
+			});
         }
     }
 };

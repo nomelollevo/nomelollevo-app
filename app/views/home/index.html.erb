@@ -8,8 +8,11 @@
 <div id="container">
   <div id="map-container">
   </div>
+  <div id="description-container">
   <div id="description">
-
+	<div id="description-close">
+		<%= image_tag("close.png")%>
+	</div>
     <div id="description-title">
       Cada mudanza es una oportunidad
     </div>
@@ -28,7 +31,44 @@
     <span>Crea una nueva venta</span>
     <% end %>
   </div>
-
+  </div>
+  <div id="categorical-search">
+  	<div id="categorical-search-title">
+  		B&uacute;squeda:
+  	</div>
+	<div id="categorical-search-form">
+		<% form_tag '/categoricalSearch' do -%>
+		<ul>
+			<li>
+			1º ¿Entorno a d&oacute;nde quieres buscar?<br/> <br/>
+			    <%= radio_button_tag 'position', 'actual_position' %>
+				<%= label_tag 'initial_position', 'Posición actual' %>
+				<%= radio_button_tag 'position', 'cp'%>
+				<%= label_tag 'postal_code', 'Código postal'%>				
+				<br/>
+				<div id="categorical-search-postalcode" style="display:none">
+					<%= label_tag 'postal_code', 'Código postal: '%>
+					<%= text_field_tag "postal_code", "" %>
+				</div>
+			</li>
+			<li>
+				2º Elige una categor&iacute;a
+				<br/><br/>
+				<%= select_tag "category", options_for_select(@categories.collect{ |c| [c]})
+				%>
+			
+			</li>
+			<li>	
+				3º ¿Hasta cu&aacute;nto est&aacute;s dispuesto a pagar? <br/> <br/>
+				<%= text_field_tag "price", "" %> €
+			</li>			
+		</ul>
+	</div>	
+	<div id="categorical-serach-submit">
+		<%= submit_tag 'Buscar', :class => "categorical-serach-buton"%>
+	</div>
+	<% end -%>
+  </div>	
 </div>
 
 <div id="login-overlay" class="overlay">
