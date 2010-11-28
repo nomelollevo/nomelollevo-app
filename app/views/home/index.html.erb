@@ -33,15 +33,15 @@
   </div>
   </div>
   <div id="categorical-search">
-  	<div id="categorical-search-title">
+  	<div id="categorical-search-title" class="form-title">
   		B&uacute;squeda:
   	</div>
 	<div id="categorical-search-form">
-		<% form_tag '/categoricalSearch' do -%>
+		<% form_tag '/categoricalSearch', :html => {:id => "categorical-search-jsform"}  do -%>
 		<ul>
-			<li>
+			<li class="li33">
 			1º ¿Entorno a d&oacute;nde quieres buscar?<br/> <br/>
-			    <%= radio_button_tag 'position', 'actual_position' %>
+			    <%= radio_button_tag 'position', 'actual_position', checked = true %>
 				<%= label_tag 'initial_position', 'Posición actual' %>
 				<%= radio_button_tag 'position', 'cp'%>
 				<%= label_tag 'postal_code', 'Código postal'%>				
@@ -51,22 +51,25 @@
 					<%= text_field_tag "postal_code", "" %>
 				</div>
 			</li>
-			<li>
+			<li class="li21">
 				2º Elige una categor&iacute;a
 				<br/><br/>
-				<%= select_tag "category", options_for_select(@categories.collect{ |c| [c]})
-				%>
-			
+				<%= select_tag "category", options_for_select(@categories.collect{ |c| [c]})%>
 			</li>
-			<li>	
+			<li class="li36">	
 				3º ¿Hasta cu&aacute;nto est&aacute;s dispuesto a pagar? <br/> <br/>
-				<%= text_field_tag "price", "" %> €
+				<%= text_field_tag "price", "cualquier precio" %> €
 			</li>			
 		</ul>
+		<div id="categorical-serach-submit">
+			<%= submit_tag 'Buscar'%>
+		</div>
+		<%= link_to(url_for(:controller => "search", :action => "categorical"),
+	                :id => "categorical-serach-button",:class => "button") do %>
+	      <span>buscar</span>
+	    <% end %> 
 	</div>	
-	<div id="categorical-serach-submit">
-		<%= submit_tag 'Buscar', :class => "categorical-serach-buton"%>
-	</div>
+	
 	<% end -%>
   </div>	
 </div>
