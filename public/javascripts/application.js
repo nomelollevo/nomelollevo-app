@@ -147,6 +147,13 @@ NML.Home = {
 			jQuery("#description-close").click(function() {
 				jQuery("#description").hide();			   
 			});
+			
+			jQuery("#categorical-serach-submit").hide();
+            jQuery("#categorical-serach-button").show();
+            jQuery("#categorical-serach-button").click(function(){
+                jQuery("#categorical-search-jsform").trigger("submit");
+                return false;
+            });
         }
     }
 };

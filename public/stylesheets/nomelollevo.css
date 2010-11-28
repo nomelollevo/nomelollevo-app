@@ -148,24 +148,34 @@ a {
 #categorical-search-title{
 	position: relative;
 	float: left;
-	width:100%;
-	color:#f8b33a;
-	font-weight: bold;
-	font-size:26px;
+	width:20%;
+	margin-left:8%;
 }
 
 #categorical-search-form{
    position: relative;
    float: left;
-   width:100%;
+   width:92%;
    margin-top:2%;
    margin-bottom:2%;
+   margin-left:8%;
 }
 
 #categorical-search-form li{
    	position: relative;
 	float: left;
+}
+
+.li33{
 	width:33%;
+}
+
+.li36{
+	width:36%;
+}
+
+.li21{
+	width:21%;
 }
 
 #categorical-search-postalcode{
@@ -178,13 +188,22 @@ a {
 #categorical-serach-submit{
 	position: relative;
 	float: left;
-	width:100%;
+	width:90%;
+	margin-top:2%;
 	text-align:right;
 }
 
-.categorical-serach-buton{
-
+#categorical-serach-button{
+	display: none;
+	text-align:center;
+	font-size: 20px;
+	margin-top: 4%;
+	position: relative;
+	float: left;
+	margin-left:43%;
+	width:13%;
 }
+
 a.button {
    display: block;
    float: left;
