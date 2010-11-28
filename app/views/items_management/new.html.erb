@@ -1,0 +1,77 @@
+<script type="text/javascript">
+  jQuery(function($) {
+    // document ready
+    NML.ItemsManagement.New.onload();
+  });
+</script>
+
+<!-- Menu -->
+<%= render :partial => "sales_management/menu" %>
+
+<div id="new-form-container">
+  <div class="form-title" id="new-item-form-title">
+    Nuevo Art&iacute;culo
+  </div>
+
+  <%= form_for @item, :as => :item, :url => {:action => 'create'}, :html => {:id => "new-item-form"}  do |f| %>
+
+    <%= errors_for(@item) %>
+
+    <div class="form-container-title">
+      Datos del art&iacute;culo:
+    </div>
+
+    <div id="new-item-data" class="form-container">
+      <div class="form-left-column">
+        <div class="form-pair">
+          <%= f.label :title, "Título" %>
+          <%= f.text_field :title %>
+        </div>
+
+        <div class="form-pair">
+          <%= f.label :price, "Precio" %>
+          <%= f.text_field :price %>
+        </div>
+      </div>
+
+      <div class="form-right-column">
+        <div class="form-pair">
+          <%= f.label :status, "Estado" %>
+          <%= select :item, :status, Item.valid_status.reduce({}){|h,i| h[i] = i; h} %>
+        </div>
+
+        <div class="form-pair">
+          <%= f.label :category, "Categoría" %>
+          <%= select :item, :category, Item.categories.reduce({}){|h,i| h[i] = i; h} %>
+        </div>
+      </div>
+    </div>
+
+    <div id="new-item-description-title" class="form-container-title">
+      Descripci&oacute;n del art&iacute;culo:
+    </div>
+
+    <div id="new-item-description" class="form-container">
+      <%= text_area :item, :description, :cols => 79 %>
+    </div>
+
+    <div id="new-item-should-publish-title" class="form-container-title">
+      &iquest;Publicar el artículo?
+    </div>
+
+    <div id="new-item-should-publish" class="form-container">
+      <%= radio_button_tag :should_publish, "publicar", true %> <label for="should_publish_publicar">publicar</label>
+      <%= radio_button_tag :should_publish, "borrador" %> <label for="should_publish_borrador">borrador</label>
+    </div>
+
+    <input type="submit" value="a&ntilde;adir el art&iacute;culo" id="submit-new-item"/>
+    <%= link_to(url_for(:controller => "items_management",
+                        :action     => "create",
+                        :user_id    => @user.id,
+                        :sale_id    => @sale.id),
+                :id => "add-items-to-new-item-button",:class => "button") do %>
+      <span>a&ntilde;adir el art&iacute;culo</span>
+    <% end %>
+
+  <% end %>
+</div>

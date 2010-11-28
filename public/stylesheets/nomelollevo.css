@@ -27,7 +27,8 @@ a {
    color: white;
    background: orange;
    font-size: 25px;
-   padding: 10px
+   padding: 10px;
+   text-align: center
 }
 
 .field_with_errors input {
@@ -106,7 +107,7 @@ a {
    background-color: #968e7e;
    position: relative;
    margin: -375px auto;
-   width:50%;
+   width:600px;
    height:300px;
    color: white;
    padding: 10px 20px
@@ -151,12 +152,13 @@ a.cancel-link {
 }
 
 #new-sale-home-button {
-   position: absolute;
+   position: relative;
    bottom: 30px;
    font-size: 20px;
    color: white;
    text-shadow: #e59408 0px -1px 1px;
-   margin-left: 145px
+   top: 100px;
+   left: 185px
 }
 
 #sub-description-body {
@@ -245,7 +247,6 @@ a.cancel-link {
 }
 
 #actions-row {
-   width: 100%;
    font-size: 20px;
    margin-top: 20px;
    margin-left: 40px;
@@ -300,7 +301,7 @@ a.cancel-link {
 .sale-row-actions {
    position: absolute;
    bottom: 30px;
-   left: 100px
+   left: 75px
 }
 
 .sale-row-info {
@@ -317,7 +318,7 @@ a.cancel-link {
 
 /* new sale */
 
-#new-sale-container {
+#new-form-container {
    padding: 20px;
    margin-top: 20px;
    margin-bottom: 200px;
@@ -326,7 +327,7 @@ a.cancel-link {
    width: 700px;
 }
 
-.sale-container {
+.form-container {
    padding: 30px;
    background-color: #968E7E;
    color: white;
@@ -358,7 +359,7 @@ a.cancel-link {
    margin-top: 40px
 }
 
-.sale-container-title {
+.form-container-title {
    margin-left: 10px;
    padding: 10px;
    font-size: 20px
@@ -376,17 +377,86 @@ a.cancel-link {
 
 #add-items-to-new-sale-button {
    display: none;
-   margin-left: 240px;
+   margin-left: 210px;
    font-size: 20px;
    margin-top: 30px
 }
 
 #submit-new-sale {
-   margin-left: 270px;
+   margin-left: 220px;
    margin-top: 30px
 }
 
 #new-sale-form-title {
    margin-bottom: 40px;
-   width: 141px
+   width: 200px;
+   text-align: center
+}
+
+/********************/
+/*      Items      */
+/*******************/
+
+#new-item-form-title {
+   margin-bottom: 40px;
+   width: 200px
+}
+
+#new-item-data {
+   position: relative
+}
+
+.form-right-column {
+   position: absolute;
+   top: 30px;
+   right: 100px
+}
+
+#new-item-should-publish input {
+   margin-left: 50px
+}
+
+#new-item-description-title {
+   margin-top: 40px
+}
+
+#new-item-should-publish-title {
+   margin-top: 40px
+}
+
+#add-items-to-new-item-button {
+   display: none;
+   margin-left: 210px;
+   font-size: 20px;
+   margin-top: 30px
+}
+
+#items-listing table {
+   width: 100%;
+   border-collapse: collapse;
+   -moz-border-radius: 3px;
+   border-radius: 3px;
+   background-color: white
+}
+
+#items-listing td {
+   padding: 10px;
+   text-align: left;
+   border-bottom: 1px solid #ECECEC
+}
+
+#items-listing th {
+   padding: 10px;
+   background-color: #70695E;
+   color: white;
+   text-align: left
+}
+
+#items-listing tbody {
+   color: #968e7e
+}
+
+#items-listing-form-title {
+   width: 400px;
+   margin-bottom: 60px
 }

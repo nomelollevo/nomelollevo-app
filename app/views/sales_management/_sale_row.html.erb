@@ -48,11 +48,21 @@
 
   <!-- Sale items actions -->
   <div class="sale-row-actions">
-    <%= link_to(url_for(:action => "edit",
-    :user_id => @user.id,
-    :sale_id => sale.id),
+    <%= link_to(url_for(:controller => :sales_management,
+                        :action => :edit,
+                        :user_id => @user.id,
+                        :sale_id => sale.id),
     :class => "button") do %>
     <span> Editar </span>
     <% end %>
+
+    <%= link_to(url_for(:controller => :items_management,
+                        :action     => :index,
+                        :user_id    => @user.id,
+                        :sale_id    => sale.id),
+                        :class      => "button") do %>
+    <span> Gestionar artículos </span>
+    <% end %>
+
   </div>
 </div>

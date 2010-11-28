@@ -20,7 +20,10 @@ class SalesManagementController < ApplicationController
     @sale.user = @user
     if @sale.save
       flash[:notice] = "La venta ha sido creada con &eacute;xito"
-      render :edit
+      redirect_to :controller => :items_management,
+                  :action     => :index,
+                  :sale_id    => @sale.id,
+                  :user_id    => @user.id
     else
       flash[:error] = "La venta no ha podido ser creada, repasa la informaci&oacute;n que falta"
       render :new

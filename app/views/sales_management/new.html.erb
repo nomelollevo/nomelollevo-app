@@ -8,7 +8,7 @@
 <!-- Menu -->
 <%= render :partial => "sales_management/menu" %>
 
-<div id="new-sale-container">
+<div id="new-form-container">
   <div class="form-title" id="new-sale-form-title">
     Nueva venta
   </div>
@@ -17,10 +17,10 @@
 
     <%= errors_for(@sale) %>
 
-    <div class="sale-container-title">
+    <div class="form-container-title">
       Localización de la venta:
     </div>
-    <div id="new-sale-location" class="sale-container">
+    <div id="new-sale-location" class="form-container">
       <div class="form-pair">
         <%= f.label :province, "Provincia" %>
         <%= f.text_field :province %>
@@ -42,14 +42,10 @@
       <div id="sale-map"></div>
     </div>
 
-    <div id="new-sale-date-title" class="sale-container-title">
+    <div id="new-sale-date-title" class="form-container-title">
       Tiempo en que la venta estará activa:
     </div>
-    <div id="new-sale-date" class="sale-container">
-      <div class="form-pair">
-        <%= f.label :start_time, "Fecha de inicio" %>
-        <%= f.text_field :start_time %>
-      </div>
+    <div id="new-sale-date" class="form-container">
 
       <div class="form-pair" id="is-unlimited-pair">
         <%= f.label :end_time, "Fecha de fin" %>
@@ -62,9 +58,10 @@
       </div>
     </div>
 
-    <input type="submit" value="a&ntilde;adir art&iacute;culos" id="submit-new-sale"/>
-    <%= link_to("#", :id => "add-items-to-new-sale-button",:class => "button") do %>
-      <span>a&ntilde;adir art&iacute;culos</span>
+    <input type="submit" value="guardar y a&ntilde;adir art&iacute;culos" id="submit-new-sale"/>
+    <%= link_to(url_for(:controller => "sales_management", :action => "create", :user_id => @user.id),
+                :id => "add-items-to-new-sale-button",:class => "button") do %>
+      <span>guardar y a&ntilde;adir art&iacute;culos</span>
     <% end %>
 
   <% end %>

@@ -10,7 +10,7 @@ class Sale < ActiveRecord::Base
 
   validates_presence_of :zip_code, :message => "Debes indicar un código postal"
   validates_presence_of :province, :message => "Debes indicar la provincia"
-  validates_presence_of :longitude, :message => "Debe tener una longitud geográfica"
+  validates_presence_of :longitude,:message => "Debe tener una longitud geográfica"
   validates_presence_of :latitude, :message => "Debe tener una latitud geográfica"
 
   validate :value_for_is_unlimited
@@ -23,9 +23,6 @@ class Sale < ActiveRecord::Base
     if !is_unlimited && end_time.nil?
       errors.add(:end_time, "Debes indicar la fecha de fin para ventas limitadas")
     end
-    if !is_unlimited && start_time.nil?
-      errors.add(:start_time, "Debes indicar la fecha de inicio para ventas limitadas")
-    end
   end
 
   def value_for_is_unlimited
@@ -35,8 +32,9 @@ class Sale < ActiveRecord::Base
   end
 
   def end_time_in_the_future
-    if !is_unlimited && end_time && start_time && (end_time < start_time)
-      errors.add(:end_time, "La fecha de fin no puede ser anterior a la fecha de inicio")
+    start_time = Date.today
+    if !is_unlimited && end_time && (end_time < start_time)
+      errors.add(:end_time, "La fecha de fin no puede ser anterior a la fecha actual")
     end
   end
 
@@ -45,4 +43,5 @@ class Sale < ActiveRecord::Base
   def total_price
     items.reduce(0){|t,i| t += i.price}
   end
+
 end

@@ -1,0 +1,76 @@
+<script type="text/javascript">
+  jQuery(function($) {
+    // document ready
+    NML.ItemsManagement.Index.onload();
+  });
+</script>
+
+<!-- Menu -->
+<%= render :partial => "sales_management/menu" %>
+
+<!-- Actions -->
+<div id="actions-row">
+
+    <%= link_to(url_for(:controller => "items_management", :action => "new"),
+                :id => "new-item-button",
+                :class => "button") do %>
+      <span>+ Nuevo art&iacute;culo</span>
+    <% end %>
+
+</div>
+
+
+<% if @items.empty? %>
+
+  <div id="sales-warning">
+    Todav&iacute;a no has creado ning&uacute;n art&iacute;culo para esta venta, haz clic en el bot&oacute;n
+    <%= link_to "nuevo artículo", url_for(:controller => "items_management",
+                                          :action => "new") %> para crear uni.
+  </div>
+
+<% else %>
+
+<!-- Items listing -->
+  <div id="items-listing" class="container_12">
+
+    <div class="form-title" id="items-listing-form-title">
+      Art&iacute;culos inclu&iacute;dos en la venta
+    </div>
+
+
+    <table id="items-table">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>&iquest;Publicada?</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr class='<%= cycle("even ", "odd ") %>
+                     <%= item.published? ?
+                         'published_item_row' :
+                         'unpublished_item_row' %>'>
+            <td><%= item.title %></td>
+            <td><%= item.published? ? "sí": "no" %></td>
+            <td><%= item.category %></td>
+            <td><%= item.price %> &euro;</td>
+            <td><%= render_state(item.status) %></td>
+            <td>
+              <% unless item.published? %>
+                <%= link_to "Editar", "#" %>
+                <%= link_to "Publicar", "#" %>
+              <% end %>
+              <%= link_to "Borrar", "#" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<% end %>

@@ -200,14 +200,14 @@ NML.SalesManagement = {
                                                     dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
                                                     firstDay: 1,
                                                     monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']  });
-            jQuery("#sale_start_time" ).datepicker( "option", "dateFormat", 'dd-mm-yyyy' );
+            jQuery("#sale_start_time" ).datepicker( "option", "dateFormat", 'dd-mm-yy' );
 
 
             jQuery("#sale_end_time").datepicker({ dayNames: ['Domingo', 'Lunes', 'Martes', 'Mi&eacute;rcoles', 'Jueves', 'Viernes', 'S&aacute;bado'],
                                                   dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
                                                   firstDay: 1,
                                                   monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']  });
-            jQuery("#sale_end_time" ).datepicker( "option", "dateFormat", 'dd-mm-yyyy' );
+            jQuery("#sale_end_time" ).datepicker( "option", "dateFormat", 'dd-mm-yy' );
 
 
             // hide add items button
@@ -251,13 +251,49 @@ NML.SalesManagement = {
             jQuery("#sale_is_unlimited").click(function() {
                 var isSelected = jQuery("#sale_is_unlimited").attr("checked");
                 if(isSelected) {
-                    jQuery("#sale_start_time").attr('disabled', true)
-                    jQuery("#sale_end_time").attr('disabled', true)
+                    jQuery("#sale_start_time").attr('disabled', true);
+                    jQuery("#sale_end_time").attr('disabled', true);
                 } else {
-                    jQuery("#sale_start_time").attr('disabled', false)
-                    jQuery("#sale_end_time").attr('disabled', false)
+                    jQuery("#sale_start_time").attr('disabled', false);
+                    jQuery("#sale_end_time").attr('disabled', false);
                 }
             });
+        }
+    }
+};
+
+/* ItemsManagement Controller */
+NML.ItemsManagement = {
+
+    // Index action
+    Index: {
+
+        // executed when the page has been loaded
+        onload: function() {
+            jQuery("tr").each(function(index) {
+                jQuery(this).mouseover(function() {
+                    jQuery(this).css("background-color", "#ECECEC");
+                });
+                jQuery(this).mouseout(function() {
+                    jQuery(this).css("background-color", "#FFFFFF");
+                });
+            });
+        }
+    },
+
+    // New action
+    New: {
+
+        // executed when the page has been loaded
+        onload: function() {
+            // hide add items button
+            jQuery("#submit-new-item").hide();
+            jQuery("#add-items-to-new-item-button").show();
+            jQuery("#add-items-to-new-item-button").click(function(){
+                jQuery("#new-item-form").trigger("submit");
+                return false;
+            });
+
         }
     }
 };
