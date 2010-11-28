@@ -103,7 +103,7 @@ a {
 #description-container {
    position:absolute;
    width:100%;
-   margin: -375px auto;	
+   margin: -375px auto;
 }
 #description {
    -moz-border-radius: 3px;
@@ -183,7 +183,7 @@ a {
 }
 
 .categorical-serach-buton{
-	
+
 }
 a.button {
    display: block;
@@ -476,6 +476,10 @@ a.cancel-link {
 }
 
 #new-item-description-title {
+   margin-top: 40px
+}
+
+#new-item-picture-title {
    margin-top: 40px
 }
 

@@ -15,6 +15,14 @@ class Item < ActiveRecord::Base
   validate :valid_status
   validate :valid_category
 
+  # image attachment
+  has_attached_file :photo,
+                    :storage => :s3,
+                    :s3_credentials => "#{Rails.root}/config/s3.yml",
+                    :styles => { :original => "250x250>", :thumb => "150x150>" },
+                    :path => "/:style/:filename",
+                    :bucket => "nomelollevo-app"
+
   # callbacks
 
   # By default we set the publication status

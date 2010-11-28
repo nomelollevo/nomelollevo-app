@@ -5,6 +5,8 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'oauth2'        # for authentication
 gem 'rails_config'  # simple configuration of the app
 gem 'json'
+gem 'paperclip'
+gem 'aws-s3'
 
 # We ar using jquery as the js framework
 gem 'jquery-rails'

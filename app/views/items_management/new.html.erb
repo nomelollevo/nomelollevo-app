@@ -13,7 +13,8 @@
     Nuevo Art&iacute;culo
   </div>
 
-  <%= form_for @item, :as => :item, :url => {:action => 'create'}, :html => {:id => "new-item-form"}  do |f| %>
+  <%= form_for @item, :as => :item, :url => {:action => 'create'},
+                      :html => {:id=> "new-item-form", :multipart => true}  do |f| %>
 
     <%= errors_for(@item) %>
 
@@ -45,6 +46,14 @@
           <%= select :item, :category, Item.categories.reduce({}){|h,i| h[i] = i; h} %>
         </div>
       </div>
+    </div>
+
+    <div id="new-item-picture-title" class="form-container-title">
+      Foto del art&iacute;culo (opcional)
+    </div>
+
+    <div id="new-item-description" class="form-container">
+      <%= f.file_field :photo %>
     </div>
 
     <div id="new-item-description-title" class="form-container-title">
