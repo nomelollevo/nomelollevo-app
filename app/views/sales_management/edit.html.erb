@@ -1,29 +1,74 @@
 <script type="text/javascript">
   jQuery(function($) {
     // document ready
-    NML.SalesManagement.New.onload();
+    NML.SalesManagement.Edit.onload();
   });
 </script>
 
 <!-- Menu -->
 <%= render :partial => "sales_management/menu" %>
 
-<!-- Actions -->
-<div id="actions-row">
+<div id="new-form-container">
+  <div class="form-title" id="edit-sale-form-title">
+    Editar detalles de una venta
+  </div>
 
-    <%= link_to(url_for(:controller => "items_management", :action => "new"),
-                :id => "new-item-button",
-                :class => "button") do %>
-      <span>+ A&ntilde;adir un art&iacute;culo a la venta</span>
+  <%= form_for @sale, :as => :sale, :url => {:action => 'update'}, :html => {:id => "new-sale-form"}  do |f| %>
+
+    <%= errors_for(@sale) %>
+
+    <%= hidden_field_tag :sale_id, @sale.id %>
+
+    <div class="form-container-title">
+      Localización de la venta:
+    </div>
+    <div id="new-sale-location" class="form-container">
+      <div class="form-pair">
+        <%= f.label :province, "Provincia" %>
+        <%= f.text_field :province %>
+      </div>
+
+      <div class="form-pair">
+        <%= f.label :zip_code, "Código postal" %>
+        <%= f.text_field :zip_code %>
+      </div>
+
+      <div class="form-pair">
+        <%= f.label :address, "Dirección (opcional)" %>
+        <%= f.text_field :address %>
+      </div>
+
+      <%= f.hidden_field :longitude %>
+      <%= f.hidden_field :latitude %>
+
+      <div id="sale-map"></div>
+    </div>
+
+    <div id="new-sale-date-title" class="form-container-title">
+      Tiempo en que la venta estará activa:
+    </div>
+    <div id="new-sale-date" class="form-container">
+
+      <%= hidden_field_tag "hidden-end-time-year", @sale.end_time.year %>
+      <%= hidden_field_tag "hidden-end-time-month", @sale.end_time.month %>
+      <%= hidden_field_tag "hidden-end-time-day", @sale.end_time.day %>
+
+      <div class="form-pair" id="is-unlimited-pair">
+        <%= f.label :end_time, "Fecha de fin" %>
+        <%= f.text_field :end_time %>
+      </div>
+
+      <div class="form-pair">
+        <%= f.label :is_unlimited, "Indefinidia" %>
+        <%= f.check_box :is_unlimited %>
+      </div>
+    </div>
+
+    <input type="submit" value="actualizar los datos" id="submit-new-sale"/>
+    <%= link_to(url_for(:controller => "sales_management", :action => "update", :user_id => @user.id),
+                :id => "add-items-to-new-sale-button",:class => "button") do %>
+      <span>actualizar los datos</span>
     <% end %>
 
+  <% end %>
 </div>
-
-<% if @sale.items.empty? %>
-  <div id="sales-warning">
-    Todav&iacute;a no has a&ntilde;adido ningun art&iacute;culo a la venta, haz clic en el bot&oacute;n
-    <%= link_to "Anadir un artículo a la venta", url_for(:controller => "items_management",:action => "new") %> para a&ntilde;adir uno.
-  </div>
-<% else %>
-
-<% end %>

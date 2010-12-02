@@ -59,13 +59,14 @@ Nomelollevo::Application.routes.draw do
   match "/ventas/:user_id"                   => "sales_management#index"
   match "/ventas/:user_id/new"               => "sales_management#new"
   match "/ventas/:user_id/create"            => "sales_management#create"
+  match "/ventas/:user_id/update"            => "sales_management#update"
   match "/ventas/:user_id/edit/:sale_id"     => "sales_management#edit"
 
   # ItemsManagement
   match "/ventas/:user_id/articulos/:sale_id"        => "items_management#index"
   match "/ventas/:user_id/articulos/:sale_id/new"    => "items_management#new"
   match "/ventas/:user_id/articulos/:sale_id/create" => "items_management#create"
-  
+
   #search
   match "/buscar/categoria"                => "search#categorical"
 

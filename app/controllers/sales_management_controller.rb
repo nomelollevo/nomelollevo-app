@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SalesManagementController < ApplicationController
   before_filter :with_valid_user
   #before_filter :with_test_user
@@ -41,4 +42,21 @@ class SalesManagementController < ApplicationController
     end
   end
 
+  # Updates the details of a sale
+  def update
+    @sale = Sale.find(:first, :conditions => {:id => params[:sale_id]}, :include => :items)
+    if @sale.user != @user
+      flash[:error] = "No tienes permisos para editar esa venta"
+      redirect_to :index
+    else
+      @sale.update_attributes(params[:sale])
+      if @sale.save
+        flash[:new] = "La venta se ha actualizado con éxito"
+        redirect_to url_for(:action => :index, :controller => :sales_management, :user_id => @user.id)
+      else
+        flash[:error] = "La venta no ha podido ser creada, repasa la informaci&oacute;n que falta"
+        render :edit
+      end
+    end
+  end
 end

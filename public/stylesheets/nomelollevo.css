@@ -542,3 +542,9 @@ a.cancel-link {
    width: 400px;
    margin-bottom: 60px
 }
+
+/* edit sale form  */
+
+#edit-sale-form-title {
+   width: 400px
+}

@@ -137,17 +137,17 @@ NML.Home = {
             });
 
 			jQuery("#position_cp").click(function() {
-				jQuery("#categorical-search-postalcode").show();			   
+				jQuery("#categorical-search-postalcode").show();
 			});
-			
+
 			jQuery("#position_actual_position").click(function() {
-				jQuery("#categorical-search-postalcode").hide();			   
+				jQuery("#categorical-search-postalcode").hide();
 			});
-			
+
 			jQuery("#description-close").click(function() {
-				jQuery("#description").hide();			   
+				jQuery("#description").hide();
 			});
-			
+
 			jQuery("#categorical-serach-submit").hide();
             jQuery("#categorical-serach-button").show();
             jQuery("#categorical-serach-button").click(function(){
@@ -183,6 +183,25 @@ NML.SalesManagement = {
                                          position: latlng });
             });
         }
+    },
+
+    // Edit action
+    Edit: {
+
+        // executed when the page has been loaded
+        onload: function() {
+            NML.SalesManagement.New.onload();
+            var isUnlimited = jQuery("#sale_is_unlimited").attr("checked");
+            if(isUnlimited === false) {
+                var year = parseInt(jQuery("#hidden-end-time-year").val());
+                var month = parseInt(jQuery("#hidden-end-time-month").val());
+                var day = parseInt(jQuery("#hidden-end-time-day").val());
+
+                var date = new Date(year, month - 1, day);
+                jQuery("#sale_end_time").datepicker('setDate', date);
+            }
+        }
+
     },
 
     // New action
